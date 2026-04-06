@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autismo e Inclusão Escolar | Fundação Abrinq</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2d5a7b;
+            --accent: #e8704a;
+            --light-bg: #f8f6f3;
+            --text-dark: #2a2a2a;
+            --text-light: #5a5a5a;
+            --border: #e0dcd6;
+            --white: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background-color: var(--white);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Header Navigation */
+        header {
+            background-color: var(--white);
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: #d65a35;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(232, 112, 74, 0.25);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            max-width: 1200px;
+            margin: 2.5rem auto 0;
+            padding: 0 2rem;
+            display: flex;
+            gap: 0.8rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--accent);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Article Header */
+        .article-header {
+            margin: 3rem 0 2rem 0;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .article-date {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            line-height: 1.2;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* Featured Image */
+        .featured-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 3rem 0;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        /* Article Content */
+        .article-content {
+            margin: 3rem 0;
+            font-size: 1.05rem;
+            color: var(--text-dark);
+        }
+
+        .article-content p {
+            margin-bottom: 1.8rem;
+            line-height: 1.8;
+            text-align: justify;
+            animation: fadeInUp 0.8s ease both;
+        }
+
+        .article-content p:nth-child(1) { animation-delay: 0.3s; }
+        .article-content p:nth-child(2) { animation-delay: 0.4s; }
+        .article-content p:nth-child(3) { animation-delay: 0.5s; }
+
+        .article-content h2 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin: 2.5rem 0 1.2rem 0;
+            font-weight: 700;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, var(--light-bg) 0%, #fff 100%);
+            border-left: 4px solid var(--accent);
+            padding: 1.8rem;
+            margin: 2.5rem 0;
+            border-radius: 4px;
+            font-style: italic;
+            color: var(--text-dark);
+            box-shadow: 0 4px 12px rgba(45, 90, 123, 0.08);
+        }
+
+        /* Content Images */
+        .article-image {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin: 2rem 0;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: var(--white);
+            margin-top: 4rem;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-section p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            opacity: 0.9;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 2.5rem auto 0;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .featured-image {
+                height: 300px;
+                margin: 2rem 0;
+            }
+
+            .article-header {
+                margin: 2rem 0;
+            }
+
+            .article-content h2 {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .header-container {
+                padding: 0 1.5rem;
+            }
+
+            .breadcrumb {
+                padding: 0 1.5rem;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                gap: 0.5rem;
+                font-size: 0.8rem;
+            }
+
+            .cta-button {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .article-content {
+                font-size: 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">Fundação Abrinq</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#about">A Fundação</a></li>
+                    <li><a href="#what">O que fazemos</a></li>
+                    <li><a href="#help">Como ajudar</a></li>
+                    <li><a href="#news">Notícias</a></li>
+                    <li><a href="#contact" class="cta-button">DOE AGORA</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="#">Início</a>
+        <span>/</span>
+        <a href="#">Notícias</a>
+        <span>/</span>
+        <span>Autismo e inclusão escolar</span>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Article Header -->
+        <article>
+            <div class="article-header">
+                <div class="article-date">04 de Setembro de 2025</div>
+                <h1>Autismo e inclusão escolar: desafios, conquistas e caminhos para transformar a Educação</h1>
+            </div>
+
+            <!-- Featured Image -->
+            <img src="1775481826960_image.png" alt="Crianças correndo felizes na escola" class="featured-image" loading="lazy">
+
+            <!-- Article Body -->
+            <div class="article-content">
+                <p>Garantir o direito à Educação é assegurar que toda criança e adolescente, inclusive aqueles com Transtorno do Espectro Autista (TEA), tenham condições reais de aprender, conviver e se desenvolver plenamente. No entanto, para milhares de crianças e adolescentes no Brasil, a escola ainda não é um espaço de inclusão efetiva.</p>
+
+                <div class="highlight-box">
+                    A Fundação Abrinq lembra que a inclusão não é um favor, é um direito. E cada passo em direção a ela transforma não apenas a vida de estudantes autistas, mas de toda a comunidade escolar.
+                </div>
+
+                <h2>Entendendo o espectro e os primeiros sinais</h2>
+
+                <p>O Transtorno do Espectro Autista (TEA) é uma condição do neurodesenvolvimento que impacta a comunicação, a interação social e o comportamento. Mas não existe uma forma única de ser autista: cada pessoa tem suas próprias singularidades, habilidades e desafios.</p>
+
+                <p>Na infância, os sinais mais comuns são atraso na fala, dificuldade de interação ou comportamentos repetitivos. "Quando o professor percebe que uma criança pode ter sinais de autismo, esse olhar aparece, primeiro, no relatório de desenvolvimento. Muitas vezes, a família não percebe esses sinais; quem nota somos nós, professores, porque convivemos com várias crianças e conseguimos identificar as diferenças entre elas", explica Mariana Farias do Nascimento Vicente, professora de ensino infantil especializada em Psicopedagogia Institucional e Clínica.</p>
+
+                <img src="1775481823939_image.png" alt="Professora fazendo atividades com alunos em sala de aula" class="article-image" loading="lazy">
+
+                <p>Já na adolescência, identificar o autismo pode ser mais complexo. Muitas vezes, características como isolamento, crises de ansiedade, hipersensibilidade a estímulos ou dificuldades de socialização são confundidas com timidez ou "fases típicas" da idade que resulta em diagnósticos tardios, sofrimento emocional e sensação de inadequação.</p>
+
+                <p>Para esses adolescentes, o desafio dentro da escola é ainda maior. A pressão social, o medo do julgamento e a falta de compreensão por parte de colegas e professores podem intensificar o sentimento de exclusão. No entanto, quando a escola oferece apoio e cria um espaço de acolhimento, a experiência escolar pode se transformar em um ponto de virada, fortalecendo vínculos e ampliando horizontes.</p>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Fundação Abrinq</h3>
+                <p>Rua Araguari, 835 - 14º andar<br>
+                Vila Uberabinha - 04514-041<br>
+                São Paulo - SP<br>
+                <strong>(11) 3848-8799</strong></p>
+            </div>
+            <div class="footer-section">
+                <h3>Navegação</h3>
+                <p><a href="#">A Fundação</a><br>
+                <a href="#">O que fazemos</a><br>
+                <a href="#">Como ajudar</a><br>
+                <a href="#">Notícias</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Institucional</h3>
+                <p><a href="#">Publicações</a><br>
+                <a href="#">Observatório da Criança</a><br>
+                <a href="#">Política de Privacidade</a><br>
+                <a href="#">Contato</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Fundação Abrinq pelos Direitos da Criança e do Adolescente | CNPJ 38.894.796/0001-46<br>
+            2025 © Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
